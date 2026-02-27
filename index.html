@@ -51,10 +51,13 @@ body{
   inset:0;
   background:url("banner.png") center/cover no-repeat;
   z-index:1;
-  box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
-/* ===== MOBILE BANNER AJUSTADO ===== */
+/* ===== MOBILE ===== */
+
+.mobile-title{
+  display:none;
+}
 
 @media (max-width:768px){
 
@@ -75,6 +78,49 @@ body{
     background-position:65% center;
   }
 
+  .mobile-title{
+    display:block;
+    position:absolute;
+    top:40px;
+    left:20px;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    background:linear-gradient(
+      90deg,
+      #ffae00,
+      #ff6a00,
+      #ffd000,
+      #ff6a00,
+      #ffae00
+    );
+
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation: fireShine 3s linear infinite;
+
+    text-shadow:
+      0 0 10px rgba(255,140,0,.5),
+      0 0 20px rgba(255,100,0,.3);
+
+    z-index:5;
+  }
+
+}
+
+/* ANIMAÇÃO FOGO */
+
+@keyframes fireShine{
+  0%{
+    background-position:0% center;
+  }
+  100%{
+    background-position:300% center;
+  }
 }
 
 /* ===== CONTEÚDO ===== */
@@ -194,7 +240,7 @@ body{
   50%{transform:scale(1.05);opacity:1;}
 }
 
-/* ===== THALES FIXO ESQUERDA ===== */
+/* ===== THALES FIXO ===== */
 
 .side-image{
   position:fixed;
@@ -271,6 +317,10 @@ video{
 
 <div class="banner-container">
   <div class="ferrari-cockpit-focado"></div>
+
+  <div class="mobile-title">
+    THALES<br>MASSENA
+  </div>
 </div>
 
 <img src="default.png" class="side-image" alt="Thales">
