@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THALES MASSENA | PAYT</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -14,6 +14,7 @@
 }
 
 *{box-sizing:border-box;}
+
 body{
   margin:0;
   font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
@@ -33,33 +34,47 @@ body{
   background:var(--dark);
 }
 
-/* FUNDO TURVO */
+/* FUNDO TURVO PC */
 .banner-container::before{
   content:"";
   position:absolute;
-  inset:-50px;
+  inset:-60px;
   background:url("banner.png") center/cover no-repeat;
-  filter:blur(30px) brightness(60%);
-  transform:scale(1.2);
+  filter:blur(34px) brightness(30%);
+  transform:scale(1.25);
   z-index:0;
 }
 
-/* DESKTOP */
-.desktop-banner{
+/* IMAGEM PRINCIPAL PC */
+.ferrari-cockpit-focado{
   position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(1100px,100%);
-  height:100%;
+  inset:0;
   background:url("banner.png") center/cover no-repeat;
   z-index:1;
   box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
-/* MOBILE */
-.mobile-banner{
-  display:none;
+/* ===== MOBILE BANNER AJUSTADO ===== */
+
+@media (max-width:768px){
+
+  .banner-container{
+    height:300px;
+  }
+
+  .banner-container::before{
+    background:url("banner-celular.png") no-repeat;
+    background-size:cover;
+    background-position:65% center;
+    filter:blur(28px) brightness(35%);
+  }
+
+  .ferrari-cockpit-focado{
+    background:url("banner-celular.png") no-repeat;
+    background-size:cover;
+    background-position:65% center;
+  }
+
 }
 
 /* ===== CONTEÚDO ===== */
@@ -106,7 +121,6 @@ body{
   letter-spacing:2px;
   font-size:13px;
   margin-bottom:30px;
-  display:block;
 }
 
 /* ===== BOTÕES ===== */
@@ -180,11 +194,11 @@ body{
   50%{transform:scale(1.05);opacity:1;}
 }
 
-/* ===== THALES FIXO ===== */
+/* ===== THALES FIXO ESQUERDA ===== */
 
 .side-image{
   position:fixed;
-  left:-450px; /* MANTIDO */
+  left:-450px;
   bottom:-10px;
   height:420px;
   z-index:8;
@@ -228,7 +242,6 @@ body{
   font-size:12px;
   font-family:monospace;
   font-weight:bold;
-  text-align:center;
 }
 
 /* ===== MODAL ===== */
@@ -251,55 +264,13 @@ video{
   border:3px solid var(--orange);
   box-shadow:0 0 40px var(--orange);
 }
-
-/* ===== MOBILE CUSTOM ===== */
-
-@media (max-width:768px){
-
-  .banner-container{
-    height:280px;
-  }
-
-  .desktop-banner{
-    display:none;
-  }
-
-  .mobile-banner{
-    display:block;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:url("banner.png") center top/cover no-repeat;
-    z-index:1;
-  }
-
-  .nome-header{
-    font-size:28px;
-  }
-
-  .main-content{
-    padding:30px 15px 100px;
-  }
-
-  .esfera-btn{
-    width:65px;
-    height:65px;
-    bottom:20px;
-    right:20px;
-  }
-
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="banner-container">
-  <div class="desktop-banner"></div>
-  <div class="mobile-banner"></div>
+  <div class="ferrari-cockpit-focado"></div>
 </div>
 
 <img src="default.png" class="side-image" alt="Thales">
