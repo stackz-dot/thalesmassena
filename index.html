@@ -14,7 +14,6 @@
 }
 
 *{box-sizing:border-box;}
-
 body{
   margin:0;
   font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
@@ -27,13 +26,14 @@ body{
 
 .banner-container{
   width:100%;
-  height:clamp(260px,28vw,360px);
+  height:360px;
   position:relative;
   overflow:hidden;
   border-bottom:2px solid rgba(213,106,18,.3);
   background:var(--dark);
 }
 
+/* FUNDO TURVO */
 .banner-container::before{
   content:"";
   position:absolute;
@@ -44,7 +44,8 @@ body{
   z-index:0;
 }
 
-.banner-inner{
+/* DESKTOP */
+.desktop-banner{
   position:absolute;
   top:0;
   left:50%;
@@ -56,11 +57,9 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
-.banner-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,transparent 60%,var(--dark) 100%);
-  z-index:2;
+/* MOBILE */
+.mobile-banner{
+  display:none;
 }
 
 /* ===== CONTEÚDO ===== */
@@ -82,7 +81,6 @@ body{
 .payt-logo{
   width:120px;
   margin-bottom:15px;
-  filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));
 }
 
 .nome-header{
@@ -141,7 +139,7 @@ body{
   font-weight:600;
 }
 
-/* ===== AURA GRUPO VIP ===== */
+/* ===== AURA VIP ===== */
 
 .vip{
   position:relative;
@@ -186,7 +184,7 @@ body{
 
 .side-image{
   position:fixed;
-  left:-450px;   /* MANTIDO COMO VOCÊ PEDIU */
+  left:-450px; /* MANTIDO */
   bottom:-10px;
   height:420px;
   z-index:8;
@@ -254,14 +252,54 @@ video{
   box-shadow:0 0 40px var(--orange);
 }
 
+/* ===== MOBILE CUSTOM ===== */
+
+@media (max-width:768px){
+
+  .banner-container{
+    height:280px;
+  }
+
+  .desktop-banner{
+    display:none;
+  }
+
+  .mobile-banner{
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("banner.png") center top/cover no-repeat;
+    z-index:1;
+  }
+
+  .nome-header{
+    font-size:28px;
+  }
+
+  .main-content{
+    padding:30px 15px 100px;
+  }
+
+  .esfera-btn{
+    width:65px;
+    height:65px;
+    bottom:20px;
+    right:20px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="banner-container">
-  <div class="banner-inner"></div>
-  <div class="banner-overlay"></div>
+  <div class="desktop-banner"></div>
+  <div class="mobile-banner"></div>
 </div>
 
 <img src="default.png" class="side-image" alt="Thales">
@@ -294,7 +332,6 @@ video{
       <i class="fas fa-comment"></i>
     </a>
 
-    <!-- BOTÃO COM AURA -->
     <a class="link-btn vip" href="https://chat.whatsapp.com/KWtNPSTmK9RDWR1onKBEoF" target="_blank">
       <span><i class="fas fa-star"></i> GRUPO VIP</span>
       <i class="fas fa-chevron-right"></i>
