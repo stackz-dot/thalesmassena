@@ -6,7 +6,7 @@
 <title>THALES MASSENA | PAYT</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JCXBTXSM4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -61,22 +61,6 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
-/* ===== MOBILE: usa celular.png sem mexer no PC ===== */
-@media (max-width:768px){
-  .banner-container{ height:300px; }
-  .banner-container::before{
-    background:url("celular.png") center/cover no-repeat;
-    filter:blur(26px) brightness(60%);
-    transform:scale(1.2);
-  }
-  .desktop-banner{
-    background:url("celular.png") center/cover no-repeat;
-    width:100%;
-    left:0;
-    transform:none;
-  }
-}
-
 /* ===== CONTEÚDO PRINCIPAL ===== */
 .main{ display:flex; justify-content:center; }
 
@@ -89,17 +73,24 @@ body{
   z-index:10;
 }
 
-/* LOGO PAYT */
-.payt-logo {
-  width: 140px;
-  margin-bottom: 15px;
+/* LOGO PAYT (brilhando) */
+.payt-logo{
+  width:140px;
+  margin-bottom:15px;
+  animation: paytGlow 1.7s ease-in-out infinite;
   filter: drop-shadow(0 0 10px rgba(213, 106, 18, 0.55));
-  transition: 0.3s;
-  animation: paytGlow 1.6s ease-in-out infinite;
 }
 @keyframes paytGlow{
-  0%,100%{ filter: drop-shadow(0 0 10px rgba(213, 106, 18, 0.45)) drop-shadow(0 0 22px rgba(246,196,83,.18)); transform:scale(1); }
-  50%{ filter: drop-shadow(0 0 16px rgba(213, 106, 18, 0.75)) drop-shadow(0 0 30px rgba(246,196,83,.35)); transform:scale(1.03); }
+  0%,100%{
+    transform:scale(1);
+    filter: drop-shadow(0 0 10px rgba(213,106,18,.55))
+            drop-shadow(0 0 18px rgba(246,196,83,.25));
+  }
+  50%{
+    transform:scale(1.04);
+    filter: drop-shadow(0 0 16px rgba(213,106,18,.85))
+            drop-shadow(0 0 28px rgba(246,196,83,.55));
+  }
 }
 
 .nome-header{
@@ -267,11 +258,21 @@ body{
   z-index:1000;
 }
 .modal.show{ display:grid; }
-.video-wrap{ width:90%; max-width:480px; text-align:center; padding:20px; }
-video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--orange); box-shadow:0 0 40px var(--orange); }
+.video-wrap{ width:90%; max-width:480px; text-align:center; }
+video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--orange); }
 .close-btn{ margin-top:15px; background:var(--orange); border:none; color:#fff; padding:12px 25px; border-radius:10px; cursor:pointer; font-weight:900; }
 
-/* some Thales no mobile */
+/* ===== MOBILE BANNER DIFERENTE (só no celular) ===== */
+@media (max-width:768px){
+  .banner-container{ height:280px; }
+  .banner-container::before{
+    background:url("celular.png") center/cover no-repeat;
+  }
+  .desktop-banner{
+    background:url("celular.png") center/cover no-repeat;
+  }
+}
+
 @media (max-width:900px){
   .side-image, .thales-video, .bubble-layer{ display:none !important; }
 }
@@ -285,9 +286,11 @@ video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--oran
 </div>
 
 <img src="default.png" class="side-image" alt="Thales">
+
 <video class="thales-video" id="thalesVideo" playsinline muted>
   <source src="avatar-boss.mp4" type="video/mp4">
 </video>
+
 <div class="bubble-layer" id="bubbleLayer"></div>
 
 <div class="main">
@@ -298,28 +301,28 @@ video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--oran
     <h1 class="nome-header">THALES MASSENA</h1>
     <span class="subtitulo">PAYT • EMPREENDEDOR</span>
 
-    <!-- ✅ CONTADORES DE CLIQUE (GA4): data-evt em cada botão -->
-    <a class="link-btn track" data-evt="click_instagram" href="https://www.instagram.com/thalesmassena/" target="_blank" rel="noopener">
+    <!-- ✅ Só esses 5 têm evento GA -->
+    <a class="link-btn" data-event="click_instagram" href="https://www.instagram.com/thalesmassena/" target="_blank" rel="noopener">
       <span><i class="fab fa-instagram"></i> INSTAGRAM</span>
       <i class="fas fa-chevron-right"></i>
     </a>
 
-    <a class="link-btn track" data-evt="click_youtube" href="https://www.youtube.com/@othalesmassena" target="_blank" rel="noopener">
+    <a class="link-btn" data-event="click_youtube" href="https://www.youtube.com/@othalesmassena" target="_blank" rel="noopener">
       <span><i class="fab fa-youtube"></i> YOUTUBE</span>
       <i class="fas fa-chevron-right"></i>
     </a>
 
-    <a class="link-btn track" data-evt="click_site_payt" href="https://www.payt.com.br/" target="_blank" rel="noopener">
+    <a class="link-btn" data-event="click_site_payt" href="https://www.payt.com.br/" target="_blank" rel="noopener">
       <span><i class="fas fa-rocket"></i> SITE OFICIAL PAYT</span>
       <i class="fas fa-chevron-right"></i>
     </a>
 
-    <a class="link-btn track" data-evt="click_suporte_whatsapp" href="https://api.whatsapp.com/send/?phone=5548999817564" target="_blank" rel="noopener">
+    <a class="link-btn" data-event="click_whatsapp_suporte" href="https://api.whatsapp.com/send/?phone=5548999817564" target="_blank" rel="noopener">
       <span><i class="fab fa-whatsapp"></i> SUPORTE</span>
       <i class="fas fa-comment"></i>
     </a>
 
-    <a class="link-btn vip track" data-evt="click_grupo_vip" href="https://chat.whatsapp.com/KWtNPSTmK9RDWR1onKBEoF" target="_blank" rel="noopener">
+    <a class="link-btn vip" data-event="click_grupo_vip" href="https://chat.whatsapp.com/KWtNPSTmK9RDWR1onKBEoF" target="_blank" rel="noopener">
       <span><i class="fas fa-star"></i> GRUPO VIP</span>
       <i class="fas fa-chevron-right"></i>
     </a>
@@ -327,11 +330,12 @@ video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--oran
   </div>
 </div>
 
-<div class="esfera-btn" id="esfera" aria-label="Easter egg">
+<!-- Shenlong (continua funcionando, mas SEM evento GA) -->
+<div class="esfera-btn" id="esfera">
   <div class="stars">★ ★<br>★ ★</div>
 </div>
 
-<div class="modal" id="overlay" role="dialog" aria-modal="true" aria-label="Shenlong">
+<div class="modal" id="overlay">
   <div class="video-wrap">
     <video id="shenlongVideo" playsinline>
       <source src="shelong.gif.mp4" type="video/mp4">
@@ -341,51 +345,35 @@ video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--oran
 </div>
 
 <script>
-/* ===== TRACKING GA4: conta cliques por botão =====
-   Você vai ver isso em: GA4 -> Relatórios -> Engajamento -> Eventos
-   (event_name = click_instagram, click_youtube, etc)
-*/
-function trackClick(evtName, href){
-  try{
-    gtag('event', evtName, {
-      link_url: href,
-      page_location: location.href
-    });
-  }catch(e){}
-}
-
-document.querySelectorAll('a.track').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    const evtName = a.getAttribute('data-evt') || 'click_link';
-    const href = a.getAttribute('href') || '';
-    trackClick(evtName, href);
-    // não bloqueia abrir o link (abre normal)
-  }, {passive:true});
+/* ===== GA: só dispara pros 5 botões centrais ===== */
+document.querySelectorAll('a[data-event]').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    const ev = a.getAttribute('data-event');
+    if (typeof gtag === 'function') {
+      gtag('event', ev, { link_url: a.href });
+    }
+  });
 });
 
-/* LOGICA SHENLONG */
+/* ===== LOGICA SHENLONG (sem GA) ===== */
 const esfera = document.getElementById('esfera');
 const overlay = document.getElementById('overlay');
 const shenlongVideo = document.getElementById('shenlongVideo');
 const closeBtn = document.getElementById('closeBtn');
 
-function abrirShenlong(){
+esfera.onclick = () => {
   overlay.classList.add('show');
   shenlongVideo.currentTime = 0;
   shenlongVideo.play().catch(()=>{});
-  trackClick('click_shenlong', 'shelong.gif.mp4');
-}
-function fecharShenlong(){
+};
+closeBtn.onclick = () => {
   overlay.classList.remove('show');
   shenlongVideo.pause();
   shenlongVideo.currentTime = 0;
-}
+};
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeBtn.click(); });
 
-esfera.addEventListener('click', abrirShenlong);
-closeBtn.addEventListener('click', fecharShenlong);
-overlay.addEventListener('click', (e)=>{ if(e.target === overlay) fecharShenlong(); });
-
-/* LOGICA THALES FALANDO (TIME 2.5s) */
+/* ===== LOGICA THALES FALANDO (sem GA) ===== */
 const thalesImg = document.querySelector('.side-image');
 const thalesVideo = document.getElementById('thalesVideo');
 const bubbleLayer = document.getElementById('bubbleLayer');
@@ -410,14 +398,11 @@ function spawnBubble(text){
   setTimeout(() => b.remove(), 2500);
 }
 
-thalesImg.addEventListener('click', () => {
+thalesImg.onclick = () => {
   if(busy) return;
   busy = true;
 
-  const frase = falas[Math.floor(Math.random()*falas.length)];
-  spawnBubble(frase);
-
-  trackClick('click_thales_talk', 'avatar-boss.mp4');
+  spawnBubble(falas[Math.floor(Math.random()*falas.length)]);
 
   thalesVideo.classList.add('show');
   thalesVideo.currentTime = 0;
@@ -428,7 +413,7 @@ thalesImg.addEventListener('click', () => {
     thalesVideo.classList.remove('show');
     busy = false;
   }, 2500);
-});
+};
 </script>
 
 </body>
