@@ -22,7 +22,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== BANNER PC ===== */
+/* ===== BANNER ===== */
 .banner-container{
   width:100%;
   height:360px;
@@ -31,7 +31,6 @@ body{
   border-bottom:2px solid rgba(213,106,18,.3);
   background:var(--dark);
 }
-
 .banner-container::before{
   content:"";
   position:absolute;
@@ -41,7 +40,6 @@ body{
   transform:scale(1.2);
   z-index:0;
 }
-
 .desktop-banner{
   position:absolute;
   top:0;
@@ -54,23 +52,17 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
-/* ===== BANNER MOBILE (SÓ TROCA IMAGEM) ===== */
+/* ✅ MOBILE: troca SOMENTE no celular (PC não muda nada) */
 @media (max-width:768px){
-
-  .banner-container{
-    height:280px;
-  }
-
   .banner-container::before{
     background:url("celular.png") center/cover no-repeat;
   }
-
   .desktop-banner{
     background:url("celular.png") center/cover no-repeat;
   }
 }
 
-/* ===== CONTEÚDO ===== */
+/* ===== CONTEÚDO PRINCIPAL ===== */
 .main{ display:flex; justify-content:center; }
 
 .main-content{
@@ -83,15 +75,11 @@ body{
 }
 
 /* LOGO PAYT */
-.payt-logo{ 
-  width:140px; 
-  margin-bottom:15px; 
-  filter: drop-shadow(0 0 12px rgba(213,106,18,.6));
-  animation:logoPulse 2s ease-in-out infinite;
-}
-@keyframes logoPulse{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
+.payt-logo { 
+    width: 140px; 
+    margin-bottom: 15px; 
+    filter: drop-shadow(0 0 10px rgba(213, 106, 18, 0.5));
+    transition: 0.3s;
 }
 
 .nome-header{
@@ -117,7 +105,7 @@ body{
   display:block;
 }
 
-/* BOTÕES */
+/* ===== BOTÕES ===== */
 .link-btn{
   background:rgba(255,255,255,.05);
   padding:18px;
@@ -144,36 +132,25 @@ body{
   font-weight:600;
 }
 
-/* VIP */
 .vip{
   position:relative;
   border-color:rgba(246,196,83,.8) !important;
   animation:vipGlow 1.6s ease-in-out infinite;
 }
-.vip::before{
-  content:"";
-  position:absolute;
-  inset:-8px;
-  border-radius:22px;
-  background:radial-gradient(circle, rgba(246,196,83,.40), rgba(246,196,83,.15), transparent);
-  filter:blur(10px);
-  z-index:-1;
-}
-@keyframes vipGlow{
-  0%,100%{ box-shadow:0 0 12px rgba(246,196,83,0.35), 0 0 25px rgba(246,196,83,0.25); }
-  50%{ box-shadow:0 0 18px rgba(246,196,83,0.80), 0 0 40px rgba(246,196,83,0.55); }
-}
 
-/* THALES */
+/* ===== AVATAR THALES (VÍDEO + IMAGEM) ===== */
 .side-image{
   position:fixed;
   left:-450px; 
   bottom:-10px;
   height:420px;
   z-index:8;
+  object-fit:contain;
   cursor:pointer;
+  pointer-events:auto;
   mask-image:linear-gradient(to right, black 85%, transparent);
   -webkit-mask-image:linear-gradient(to right, black 85%, transparent);
+  filter:drop-shadow(0 25px 45px rgba(0,0,0,.55));
 }
 
 .thales-video{
@@ -183,10 +160,15 @@ body{
   height:420px;
   z-index:9;
   display:none;
+  object-fit:contain;
+  pointer-events:none;
+  mask-image:linear-gradient(to right, black 85%, transparent);
+  -webkit-mask-image:linear-gradient(to right, black 85%, transparent);
+  filter:drop-shadow(0 25px 45px rgba(0,0,0,.55));
 }
 .thales-video.show{ display:block; }
 
-/* BALÃO */
+/* ===== BALÃO DE FALA ===== */
 .bubble-layer{
   position:fixed;
   left:0;
@@ -198,23 +180,26 @@ body{
 }
 .bubble{
   position:absolute;
-  background:#fff;
+  background:rgba(255,255,255,.95);
   color:#111;
   padding:12px 15px;
   border-radius:18px;
+  border-bottom-left-radius:4px;
+  max-width:240px;
   font-size:14px;
   font-weight:800;
   box-shadow:0 14px 40px rgba(0,0,0,.55);
+  opacity:0;
   animation:bubbleLife 2.5s ease forwards;
 }
 @keyframes bubbleLife{
   0%{opacity:0;transform:translateY(15px);}
   15%{opacity:1;transform:translateY(0);}
-  85%{opacity:1;}
+  85%{opacity:1;transform:translateY(-40px);}
   100%{opacity:0;transform:translateY(-60px);}
 }
 
-/* ESFERA */
+/* ===== ESFERA DO DRAGÃO ===== */
 .esfera-btn{
   position:fixed;
   bottom:30px;
@@ -223,15 +208,18 @@ body{
   height:80px;
   background:radial-gradient(circle at 30% 30%,#ffde59,#ff914d);
   border-radius:50%;
-  box-shadow:0 0 25px rgba(255,145,77,.5);
+  box-shadow:0 0 25px rgba(255,145,77,.5), inset -5px -5px 12px rgba(0,0,0,.4);
   cursor:pointer;
+  z-index:100;
   display:flex;
   align-items:center;
   justify-content:center;
+  animation:float 3s ease-in-out infinite;
 }
+@keyframes float{ 50%{transform:translateY(-10px);} }
 .stars{ color:#cc0000; font-size:12px; font-weight:bold; text-align:center; }
 
-/* MODAL */
+/* ===== MODAL SHENLONG ===== */
 .modal{
   position:fixed;
   inset:0;
@@ -241,6 +229,9 @@ body{
   z-index:1000;
 }
 .modal.show{ display:grid; }
+.video-wrap{ width:90%; max-width:480px; text-align:center; }
+video#shenlongVideo{ width:100%; border-radius:20px; border:3px solid var(--orange); }
+.close-btn{ margin-top:15px; background:var(--orange); border:none; color:#fff; padding:12px 25px; border-radius:10px; cursor:pointer; font-weight:900; }
 
 @media (max-width:900px){
   .side-image, .thales-video, .bubble-layer{ display:none !important; }
@@ -254,7 +245,7 @@ body{
   <div class="desktop-banner"></div>
 </div>
 
-<img src="default.png" class="side-image" id="thalesImg">
+<img src="default.png" class="side-image" alt="Thales">
 <video class="thales-video" id="thalesVideo" playsinline muted>
   <source src="avatar-boss.mp4" type="video/mp4">
 </video>
@@ -262,18 +253,36 @@ body{
 
 <div class="main">
   <div class="main-content">
-
+    
     <img src="unnamed.png" class="payt-logo" alt="PAYT">
 
     <h1 class="nome-header">THALES MASSENA</h1>
     <span class="subtitulo">PAYT • EMPREENDEDOR</span>
 
-    <a class="link-btn" href="#"><span><i class="fab fa-instagram"></i> INSTAGRAM</span><i class="fas fa-chevron-right"></i></a>
-    <a class="link-btn" href="#"><span><i class="fab fa-youtube"></i> YOUTUBE</span><i class="fas fa-chevron-right"></i></a>
-    <a class="link-btn" href="#"><span><i class="fas fa-rocket"></i> SITE OFICIAL PAYT</span><i class="fas fa-chevron-right"></i></a>
-    <a class="link-btn" href="#"><span><i class="fab fa-whatsapp"></i> SUPORTE</span><i class="fas fa-comment"></i></a>
-    <a class="link-btn vip" href="#"><span><i class="fas fa-star"></i> GRUPO VIP</span><i class="fas fa-chevron-right"></i></a>
+    <a class="link-btn" href="https://www.instagram.com/thalesmassena/" target="_blank">
+      <span><i class="fab fa-instagram"></i> INSTAGRAM</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
 
+    <a class="link-btn" href="https://www.youtube.com/@othalesmassena" target="_blank">
+      <span><i class="fab fa-youtube"></i> YOUTUBE</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+
+    <a class="link-btn" href="https://www.payt.com.br/" target="_blank">
+      <span><i class="fas fa-rocket"></i> SITE OFICIAL PAYT</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+
+    <a class="link-btn" href="https://api.whatsapp.com/send/?phone=5548999817564" target="_blank">
+      <span><i class="fab fa-whatsapp"></i> SUPORTE</span>
+      <i class="fas fa-comment"></i>
+    </a>
+
+    <a class="link-btn vip" href="https://chat.whatsapp.com/KWtNPSTmK9RDWR1onKBEoF" target="_blank">
+      <span><i class="fas fa-star"></i> GRUPO VIP</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
   </div>
 </div>
 
@@ -282,48 +291,70 @@ body{
 </div>
 
 <div class="modal" id="overlay">
-  <video id="shenlongVideo" playsinline>
-    <source src="shelong.gif.mp4" type="video/mp4">
-  </video>
+  <div class="video-wrap">
+    <video id="shenlongVideo" playsinline>
+      <source src="shelong.gif.mp4" type="video/mp4">
+    </video>
+    <button class="close-btn" id="closeBtn">VOLTAR</button>
+  </div>
 </div>
 
 <script>
-const thalesImg=document.getElementById('thalesImg');
-const thalesVideo=document.getElementById('thalesVideo');
-const bubbleLayer=document.getElementById('bubbleLayer');
+/* LOGICA SHENLONG */
+const esfera = document.getElementById('esfera');
+const overlay = document.getElementById('overlay');
+const shenlongVideo = document.getElementById('shenlongVideo');
+const closeBtn = document.getElementById('closeBtn');
 
-const falas=[
+esfera.onclick = () => {
+  overlay.classList.add('show');
+  shenlongVideo.play();
+};
+closeBtn.onclick = () => {
+  overlay.classList.remove('show');
+  shenlongVideo.pause();
+};
+
+/* LOGICA THALES FALANDO (TIME 2.5s) */
+const thalesImg = document.querySelector('.side-image');
+const thalesVideo = document.getElementById('thalesVideo');
+const bubbleLayer = document.getElementById('bubbleLayer');
+
+const falas = [
   "Existe alguma plataforma melhor que a laranjinha? 🍊",
   "O poder de um empreendedor não tem limites! 🔥",
-  "Trabalhe enquanto eles dormem 💼",
-  "A constância vence o talento 🚀",
-  "Seu limite é sua mente 😈"
+  "Trabalhe enquanto eles dormem, fature enquanto duvidam. 💼",
+  "A constância vence o talento. Foco no topo! 🚀",
+  "Seu limite é sua mente. Bora pro próximo nível? 😈"
 ];
 
-let busy=false;
+let busy = false;
 
 function spawnBubble(text){
-  const b=document.createElement('div');
-  b.className='bubble';
-  b.textContent=text;
-  b.style.left=(60+Math.random()*100)+"px";
-  b.style.bottom=(150+Math.random()*40)+"px";
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.textContent = text;
+  b.style.left = `${60 + Math.random() * 100}px`;
+  b.style.bottom = `${150 + Math.random() * 40}px`;
   bubbleLayer.appendChild(b);
-  setTimeout(()=>b.remove(),2500);
+  setTimeout(() => b.remove(), 2500);
 }
 
-thalesImg.onclick=()=>{
-  if(busy)return;
-  busy=true;
+thalesImg.onclick = () => {
+  if(busy) return;
+  busy = true;
+
   spawnBubble(falas[Math.floor(Math.random()*falas.length)]);
+  
   thalesVideo.classList.add('show');
-  thalesVideo.currentTime=0;
+  thalesVideo.currentTime = 0;
   thalesVideo.play();
-  setTimeout(()=>{
+
+  setTimeout(() => {
     thalesVideo.pause();
     thalesVideo.classList.remove('show');
-    busy=false;
-  },2500);
+    busy = false;
+  }, 2500);
 };
 </script>
 
